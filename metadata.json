@@ -1,0 +1,6 @@
+{
+  "name": "SMART BAPPEDA Kabupaten Sidoarjo",
+  "description": "Pusat informasi digital terpadu BAPPEDA Kabupaten Sidoarjo untuk pengelolaan profil organisasi, dokumentasi kegiatan bulanan, surat tugas PDF, dan pemantauan penyerapan anggaran.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
