@@ -1,3 +1,4 @@
+import http from 'http';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import path from 'path';
@@ -13,6 +14,7 @@ async function startServer() {
 
   const app = express();
   app.set('trust proxy', 1);
+  const httpServer = http.createServer(app);
 
   // Basic security headers
   app.use((_req, res, next) => {
@@ -32,7 +34,10 @@ async function startServer() {
 
   if (!isProd) {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        ws: { server: httpServer },
+      },
       appType: 'spa',
     });
     app.use(vite.middlewares);
@@ -46,7 +51,7 @@ async function startServer() {
     }
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
+  httpServer.listen(PORT, '0.0.0.0', () => {
     console.log(`SMART BAPPEDA Kabupaten Sidoarjo server running on port ${PORT}`);
   });
 }
